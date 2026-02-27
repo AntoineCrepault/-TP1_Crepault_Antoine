@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Rental; // referenced by seeders, do not rename
+use App\Models\Review;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,11 +17,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $this->call(SqlFilesSeeder::class);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+
+        //AI : create users with rentals and reviews in a safe, sequential way
+
+        User::factory(10)->create()->each(function ($user) {
+            Rental::factory(5)->for($user)->create()->each(function ($rental) use ($user) {
+                Review::factory(2)
+                    ->for($user)
+                    ->for($rental)
+                    ->create();
+            });
+        });
     }
 }

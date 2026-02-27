@@ -15,11 +15,11 @@ class User extends Model
         'phone'
     ];
 
-    public function reviews() : HasMany {
+    public function review() : HasMany {
         return $this->hasMany('\App\Models\Review');
     }
 
-    public function rentals() : HasMany {
+    public function rental() : HasMany {
         return $this->hasMany('\App\Models\Rental');
     }
 

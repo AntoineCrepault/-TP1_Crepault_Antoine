@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\belongsToMany;
 
-class Equipmentsport extends Model
+
+class Equiment_sport extends Model
 {
     use HasFactory;
     protected $fillable = [
@@ -14,13 +15,11 @@ class Equipmentsport extends Model
         'equipment_id'
     ];
 
-    public function sports() : belongsToMany {
+    public function sport() : belongsToMany {
         return $this->belongsToMany('\App\Models\Sport');
     }
 
     public function equipment() : belongsToMany {
         return $this->belongsToMany('\App\Models\Equipment');
     }
-  
-
 }

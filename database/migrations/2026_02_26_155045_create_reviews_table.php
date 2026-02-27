@@ -16,10 +16,10 @@ return new class extends Migration
             $table->tinyInteger('rating');
             $table->text('comment');
             $table->integer('user_id');
-            $table->integer('rentall_id');
+            $table->integer('rental_id');
 
-            $table->foreign('user_id')->references('id')->on('sports');
-            $table->foreign('rentall_id')->references('id')->on('equipment');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('rental_id')->references('id')->on('rentals');
         });
     }
 

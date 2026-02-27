@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('equipment', function (Blueprint $table) {
             $table->id();
             $table->string('name',50);
-            $table->text('descrition');
-            $table->decimal('daily_price',10);
+            $table->text('description');
+            $table->decimal('daily_price',10,2);
             $table->integer('category_id');
 
-            $table->foreign('category_id')->references('id')->on('category');
+            $table->foreign('category_id')->references('id')->on('categories');
+            
         });
     }
 

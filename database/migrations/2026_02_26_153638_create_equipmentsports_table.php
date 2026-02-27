@@ -11,12 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('equipmentsports', function (Blueprint $table) {
-            $table->integer('sport_id')->primary();
-            $table->integer('equipment_id')->primary();
+        Schema::create('equipment_sport', function (Blueprint $table) {
+            $table->integer('sport_id');
+            $table->integer('equipment_id');
 
+            $table->primary(['sport_id','equipment_id']);
             $table->foreign('sport_id')->references('id')->on('sports');
             $table->foreign('equipment_id')->references('id')->on('equipment');
+
+            //sinon marche pas 
+            $table->timestamps();
         });
     }
 
@@ -25,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('equipmentsports');
+        Schema::dropIfExists('equipment_sport');
     }
 };

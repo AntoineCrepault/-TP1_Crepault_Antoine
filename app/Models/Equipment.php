@@ -12,20 +12,20 @@ class Equipment extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'descrition',
+        'description',
         'daily_price',
         'category_id'
     ];
 
-    public function categorie() : BelongsTo {
+    public function category() : BelongsTo {
         return $this->belongsTo('\App\Models\Categorie');
     }
 
-    public function rentals() : HasMany {
+    public function rental() : HasMany {
         return $this->hasMany('\App\Models\Rental');
     }
 
-    public function equipmentsports() : HasMany {
-        return $this->hasMany('\App\Models\Equimentsport');
+    public function equipment_sport() : HasMany {
+        return $this->hasMany('\App\Models\Equiment_sport');
     }
 }

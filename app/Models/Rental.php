@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Rental extends Model
 {
+    protected $table = 'rentals';
+    public $timestamps = false;
+   
     use HasFactory;
     protected $fillable = [
         'start_date',
@@ -26,10 +29,7 @@ class Rental extends Model
         return $this->belongsTo('\App\Models\Equipment');
     }
 
-    public function reviews() : HasMany {
+    public function review() : HasMany {
         return $this->hasMany('\App\Models\Review');
     }
-
-
-
 }
