@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
 
         User::factory(10)->create()->each(function ($user) {
             Rental::factory(5)->for($user)->create()->each(function ($rental) use ($user) {
-                Review::factory(2)
+                Review::factory()
                     ->for($user)
                     ->for($rental)
                     ->create();
