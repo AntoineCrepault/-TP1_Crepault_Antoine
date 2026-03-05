@@ -15,9 +15,9 @@ class EquipmentResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'name'        => $this->nom,
+            'name'        => $this->name,
             'description' => $this->description,
-            'daily_price' => $this->prix_journalier,
+            'daily_price' => $this->daily_price,
             'category_id' => $this->category_id,
         ];
     }

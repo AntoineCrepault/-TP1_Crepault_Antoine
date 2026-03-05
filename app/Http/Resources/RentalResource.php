@@ -15,9 +15,9 @@ class RentalResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'start_date'   => $this->date_depart,
-            'end_date'     => $this->date_final,
-            'total_price'  => $this->prix_total,
+            'start_date'   => $this->start_date,
+            'end_date'     => $this->end_date,
+            'total_price'  => $this->total_price,
             'user_id'      => $this->user_id,
             'equipment_id' => $this->equipment_id
         ];

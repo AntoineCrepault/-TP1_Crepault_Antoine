@@ -1,10 +1,23 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Review;
 use Illuminate\Http\Request;
+use Exception;
+use Illuminate\Database\QueryException;
 
-class ReviewController extends Controller
+class ReviewController
 {
-    //
+    public function destroy($id)
+    {
+        try{
+            $review = Review::findOrFail($id);
+            $review->delete();
+            return response()->noContent();
+        } catch (QueryException $ex) {
+            abort(422, 'not found');
+        } catch (Exception $ex) {
+            abort(500, 'Server error');
+        }
+    }
 }
