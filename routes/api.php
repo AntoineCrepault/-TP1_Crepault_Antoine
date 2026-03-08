@@ -26,4 +26,4 @@ Route::post('/user/{id}', [UserController::class,'update']);
 Route::delete('/review/{id}',[ReviewController::class,'destroy']);
 
 //7
-//Route::get('', [::class,'']);
+Route::get('/equipment/{id}/average-total-cost', [EquipmentController::class,'showAverageTotalCost']);
