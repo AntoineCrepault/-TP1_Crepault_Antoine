@@ -13,7 +13,6 @@ Route::get('/equipment', [EquipmentController::class,'index']);
 Route::get('/equipment/{id}', [EquipmentController::class,'show']);
 
 //3
-//Route::get('/', [::class,'']);
 Route::get('/equipment/{id}/popularity', [EquipmentController::class,'showPopularity']);
 
 //4
