@@ -23,27 +23,18 @@ class UserController
         }
     }
 
-    public function destroy($id)
-    {
-        try{
-            $user = User::findOrFail($id);
-            $user->delete();
-            return response()->noContent();
-        } catch (QueryException $ex) {
-            abort(422, 'not found');
-        } catch (Exception $ex) {
-            abort(500, 'Server error');
-        }
-    }
-
     public function update(StoreUserRequest $request, string $id)
     {
         try{
             $user = User::findOrFail($id);
             $user->update($request->validated());
             return (new UserResource($user))->response()->setStatusCode(200);
+        } catch (ModelNotFoundException $ex) {
+            abort(404, 'invalid ID');
+
         } catch (QueryException $ex) {
             abort(422, 'not found');
+
         } catch (Exception $ex) {
             abort(500, 'Server error');
         }
