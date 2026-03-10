@@ -23,7 +23,6 @@ class UserTest extends TestCase
 
         $response->assertJsonFragment($json);
         $response->assertStatus(201);
-
         $this->assertDatabaseHas('users', $json);
     }
 
@@ -55,7 +54,6 @@ class UserTest extends TestCase
 
         $response->assertJsonFragment($json);
         $response->assertStatus(200);
-
         $this->assertDatabaseHas('users', $json);
     }
 

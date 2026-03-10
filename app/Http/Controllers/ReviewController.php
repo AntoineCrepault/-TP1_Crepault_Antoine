@@ -14,7 +14,7 @@ class ReviewController
         try{
             $review = Review::findOrFail($id);
             $review->delete();
-            return response()->noContent();
+            return response()->noContent()->setStatusCode(204);
         } catch (ModelNotFoundException $ex) {
             abort(404, 'invalid ID');
 
