@@ -6,6 +6,7 @@ use App\Models\Review;
 use Illuminate\Http\Request;
 use App\Http\Resources\EquipmentResource;
 use App\Models\Rental;
+use Dotenv\Exception\ValidationException;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
@@ -96,6 +97,8 @@ class EquipmentController
             'averageTotalCost' => $averageTotalCost
          ], 200);
 
+      } catch (ValidationException $ex) {
+         abort(422, 'Invalid date');
       } catch (ModelNotFoundException $ex) {
          abort(404, 'invalid ID');
       } catch (Exception $ex) {
