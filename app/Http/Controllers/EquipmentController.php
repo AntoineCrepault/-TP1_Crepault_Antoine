@@ -11,8 +11,21 @@ use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
 
+use OpenApi\Attributes as OA;
+
 class EquipmentController
 {
+
+//index + swagger
+
+   #[OA\Get(
+      path: "/api/equipment",
+      summary: "Afficher la liste des équipements",
+      tags: ["Equipment"],
+      responses: [
+        new OA\Response(response: 200, description: "valide")
+      ]
+   )]
    public function index()
    {
       try {
@@ -22,6 +35,26 @@ class EquipmentController
       }
    }
 
+
+//show + swagger
+
+   #[OA\Get(
+      path: "/api/equipment/{id}",
+      summary: "Afficher un équipement",
+      tags: ["Equipment"],
+      parameters: [
+         new OA\Parameter(
+            name: "id",
+            description: "Equipment ID",
+            in: "path",
+            required: true
+         )
+      ],
+      responses: [
+          new OA\Response(response: 200, description: "ID valide"),
+         new OA\Response(response: 404, description: "Equipment non trouvé")
+      ]
+   )]
    public function show(string $id)
    {
       try {
@@ -34,6 +67,26 @@ class EquipmentController
         
    }
 
+
+//showPopularity + swagger
+
+   #[OA\Get(
+      path: "/api/equipment/{id}/popularity",
+      summary: "Afficher la popularité d'un équipement",
+      tags: ["Equipment"],
+      parameters: [
+         new OA\Parameter(
+            name: "id",
+            description: "Equipment ID",
+            in: "path",
+            required: true
+         )
+      ],
+      responses: [
+         new OA\Response(response: 200, description: "ID valide"),
+         new OA\Response(response: 404, description: "Equipment non trouvé")
+      ]
+   )]
    public function showPopularity(string $id)
    {
       try {
@@ -62,6 +115,38 @@ class EquipmentController
    }
 
 
+//showAverageTotalCost + swagger
+
+   #[OA\Get(
+      path: "/api/equipment/{id}/average-total-cost",
+      summary: "Afficher le coût moyen total des locations avec des dates optionnelles",
+      tags: ["Equipment"],
+      parameters: [
+         new OA\Parameter(
+            name: "id",
+            description: "Equipment ID",
+            in: "path",
+            required: true
+         ),
+         new OA\Parameter(
+            name: "minDate",
+            description: "Date minimum",
+            in: "query",
+            required: false
+         ),
+         new OA\Parameter(
+            name: "maxDate",
+            description: "Date maximum",
+            in: "query",
+            required: false
+         )
+      ],
+      responses: [
+         new OA\Response(response: 200, description: "Entrées valides"),
+         new OA\Response(response: 404, description: "ID invalide"),
+         new OA\Response(response: 422, description: "Date invalide")
+      ]
+   )]
    public function showAverageTotalCost(Request $request, string $id)
    {
       try {
